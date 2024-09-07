@@ -1,0 +1,26 @@
+var editTextPrecio =  findViewById<EditText>(R.id.editTextPrecio)
+        var editTextDescuento = findViewById<EditText>(R.id.editTextDescuento)
+        var textviceResultado = findViewById<TextView>(R.id.textViewResultado)
+        var button = findViewById<Button>(R.id.button)
+        var radioButtonTVA = findViewById<RadioButton>(R.id.radioButtonIva)
+        var radiobutton = findViewById<RadioButton>(R.id.radioButtonSinIVA)
+
+        button.setOnClickListener {
+            var iva = 0.0
+            var precio = editTextPrecio.text.toString().toDoubleOrNull() ?: 8.0
+            var descuento = editTextDescuento.text.toString().toDoubleOrNull()?: 0.0
+
+            var totalPagar  = 0.0
+
+            if (precio > descuento){
+                totalPagar=precio - descuento
+            }
+
+
+
+            if (radioButtonTVA.isChecked) {
+                iva = totalPagar * 0.13
+            }
+            totalPagar += iva
+            textviceResultado.text = "Total pagar es: $totalPagar"
+        }
